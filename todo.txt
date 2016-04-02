@@ -1,0 +1,7 @@
+users home page shows how many sessions they haven't seen and voted on
+users home page shows one session they haven't voted on with a interested/not interested button
+clicking the interested/not interested button submits the vote and marks that session as viewed
+make sure admin users can only login through the admin page. Don't let them login through the regular login page
+users can edit their first and last name
+admins can see the votes
+create a simple schedule based on votes

@@ -1,0 +1,21 @@
+<nav sessions="$ctrl.sessions" reviewed-sessions="$ctrl.reviewedSessions"></nav>
+<h1>Unreviewed Talks</h1>
+
+<div class="well">
+<h3>{{$ctrl.currentSessionToReview.title}}</h3>
+
+<p>Are you interested in this session?</p>
+<button class="btn btn-primary" ng-click="$ctrl.voteYes()">Yes</button>
+<button class="btn btn-warning" ng-click="$ctrl.voteNo()">No</button>
+</div>
+
+
+<h2>Your Sessions</h2>
+<a href="#/createsession">Create a New Session</a>
+<div class="col-sm-8">
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="session in $ctrl.userSessions">
+      {{session.title}}
+    </li>
+  </ul>
+</div>
