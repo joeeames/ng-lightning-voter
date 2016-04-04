@@ -3,9 +3,10 @@ angular.module('app').component('createNewSession', {
   bindings: {
     sessions: '=',
     userSessions: '=',
-    reviewedSessions: '='
+    reviewedSessions: '=',
+    userProfile: '='
   },
-  controller: function($firebaseAuthService, currentUser, $timeout) {
+  controller: function($firebaseAuthService, $timeout) {
     
     this.create = function() {
       var newUserSession = {
@@ -21,8 +22,8 @@ angular.module('app').component('createNewSession', {
           abstract: this.abstract,
           userKey: $firebaseAuthService.$getAuth().uid,
           userSessionKey: ref.key(),
-          userFirstName: currentUser.firstName,
-          userLastName: currentUser.lastName,
+          userFirstName: this.userProfile.firstName,
+          userLastName: this.userProfile.lastName,
           voteCount: 0
         }
         this.sessions.$add(newSession);

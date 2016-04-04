@@ -5,11 +5,11 @@ angular.module('app').component('home', {
     sessions: '=',
     reviewedSessions: '='
   },
-  controller: function(currentUser) {
+  controller: function($firebaseAuthService) {
     
     this.setNextSessionToReview = function() {
       this.currentSessionToReview = 
-        this.sessions.getNextUnreviewedSession(currentUser.uid, this.reviewedSessions);
+        this.sessions.getNextUnreviewedSession($firebaseAuthService.$getAuth().uid, this.reviewedSessions);
     }
     this.setNextSessionToReview();
     
@@ -23,6 +23,7 @@ angular.module('app').component('home', {
     }
     
     this.voteNo = function() {
+      console.log('vote no')
       this.reviewedSessions[this.currentSessionToReview.$id] = 'no';
       this.reviewedSessions.$save();
       this.setNextSessionToReview();

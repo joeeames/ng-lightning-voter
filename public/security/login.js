@@ -3,7 +3,7 @@ angular.module('app').component('login', {
   bindings: {
     currentAuth: '='
   },
-  controller: function($firebaseAuthService, $firebaseRef, $location, currentUser, $firebaseObject) {
+  controller: function($firebaseAuthService, $firebaseRef, $location, $firebaseObject) {
     this.loggedIn = !!this.currentAuth;
     if(this.loggedIn) {
       $location.path('/home');

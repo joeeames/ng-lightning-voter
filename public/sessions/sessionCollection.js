@@ -3,18 +3,18 @@ angular.module('app').factory('sessionCollection', function($firebaseArray) {
     getUnreviewedCount: function(userKey, reviewedSessions) {
       var total = 0;
       angular.forEach(this.$list, function(session) {
-        if(typeof reviewedSessions[session.$id] === 'undefined') {
+        if(userKey !== session.userKey
+          && typeof reviewedSessions[session.$id] === 'undefined') {
           total++;
         }
       });
       return total;
     },
     getNextUnreviewedSession: function(userKey, reviewedSessions) {
-      console.log(this.$list);
       var found = this.$list.find(function(session) {
-        return typeof reviewedSessions[session.$id] === 'undefined'
+        return userKey !== session.userKey
+          && typeof reviewedSessions[session.$id] === 'undefined'
       });
-      console.log(found);
       return found;
     }
   });

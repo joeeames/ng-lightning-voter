@@ -3,6 +3,10 @@ angular.module('app').factory('fbRef', function($firebaseRef, $firebaseAuthServi
     getUsersRef: function() {
       return $firebaseRef.default.child('users');
     },
+    getUserRef: function() {
+      return $firebaseRef.default.child('users')
+        .child($firebaseAuthService.$getAuth().uid);
+    },
     getUserSessionsRef: function() {
       return $firebaseRef.default.child('userSessions')
         .child($firebaseAuthService.$getAuth().uid);

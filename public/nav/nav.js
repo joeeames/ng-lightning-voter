@@ -1,15 +1,15 @@
 angular.module('app').component('nav', {
   templateUrl: '/nav/nav.html',
   bindings: {
-    currentAuth: '=',
     sessions: '=',
     reviewedSessions: '='
   },
-  controller: function(currentUser) {
-    this.currentUser = currentUser;
+  controller: function($firebaseAuthService, $firebaseObject, fbRef) {
+    
+    this.currentUser = $firebaseObject(fbRef.getUserRef());
     
     this.getUnreviewedSessionsCount = function() {
-      return this.sessions.getUnreviewedCount(currentUser.uid, this.reviewedSessions);
+      return this.sessions.getUnreviewedCount($firebaseAuthService.$getAuth().uid, this.reviewedSessions);
     }
   }
 })

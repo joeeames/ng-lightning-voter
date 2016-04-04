@@ -1,29 +1,19 @@
-angular.module('app').factory('routeAuth', function($q, currentUser) {
+angular.module('app').factory('routeAuth', function($q, $firebaseObject, fbRef) {
   return {
     requireAdmin: function() {
       var dfd = $q.defer();
       
-      if(currentUser.isAdmin) {
-        return dfd.resolve();
-      } else {
-        return dfd.reject('NOT_AUTHORIZED');
-      }
+      var profile = $firebaseObject(fbRef.getUserRef()).$loaded().then(function(userData) {
+        if(userData.isAdmin) {
+          console.log('authorized');
+          dfd.resolve();
+        } else {
+          console.log('not authorized');
+          dfd.reject('NOT_AUTHORIZED');
+        }  
+      })
       
-      // checkCurrentUserAsync(currentUser, dfd);      
-      // return dfd.promise;
+      return dfd.promise;
     }
   }
-  
-  // this is an attempt to pause execution until the user data is completely loaded
-  // but it's not a for sure thing so it's useless
-  /*function checkCurrentUserAsync(currentUser, dfd) {
-    setTimeout(function() {
-      console.log('deferred current user check', currentUser);
-      if(currentUser.isAdmin) {
-        return dfd.resolve();
-      } else {
-        return dfd.reject('NOT_AUTHORIZED');
-      }
-    }, 0); // it works on a local box if set to 10ms. silly race condition
-  }*/
 })
