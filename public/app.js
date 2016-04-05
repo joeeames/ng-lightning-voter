@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'firebase', 'ngAnimate']);
+var app = angular.module('app', ['ngRoute', 'firebase', 'ngAnimate', 'toastr']);
 
 app.run(function($rootScope, $location, $firebaseAuthService, 
     $firebaseObject, $firebaseRef) {

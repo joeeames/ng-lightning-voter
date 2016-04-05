@@ -66,7 +66,7 @@ app.config(function($routeProvider) {
       }
     })
     .when('/admin/createusers', {
-      template: '<admin-create-users users="$resolve.users"></admin-create-users>',
+      template: '<admin-create-users reviewed-sessions="$resolve.reviewedSessions" sessions="$resolve.sessions" users="$resolve.users"></admin-create-users>',
       resolve: {
         users: function($firebaseAuthService, fbRef, $firebaseArray) {
           return $firebaseAuthService.$requireAuth().then(function() {
@@ -74,7 +74,9 @@ app.config(function($routeProvider) {
             return $firebaseArray(query).$loaded()
           })
         },
-        admin: routeResolvers.requireAdmin
+        admin: routeResolvers.requireAdmin,
+        sessions: routeResolvers.sessions,
+        reviewedSessions: routeResolvers.reviewedSessions
       }
     })
     .when('/profile', {

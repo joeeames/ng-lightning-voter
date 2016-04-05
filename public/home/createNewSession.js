@@ -6,7 +6,7 @@ angular.module('app').component('createNewSession', {
     reviewedSessions: '=',
     userProfile: '='
   },
-  controller: function($firebaseAuthService, $timeout) {
+  controller: function($firebaseAuthService, $timeout, toastr) {
     
     this.create = function() {
       var newUserSession = {
@@ -26,19 +26,14 @@ angular.module('app').component('createNewSession', {
           userLastName: this.userProfile.lastName,
           voteCount: 0
         }
-        this.sessions.$add(newSession);
+        this.sessions.$add(newSession).then(function() {
+          toastr.success('Success!');
+        })
         
         this.title = "";
         this.length = null;
         this.abstract = "";
       }).bind(this))
-      
-      this.showMessage = true;
-      $timeout((function() {
-        this.showMessage = false;
-      }).bind(this), 2500)
-      
     }
-    
   }
 })
