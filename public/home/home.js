@@ -17,7 +17,13 @@ angular.module('app').component('home', {
       return this.sessions.getUnreviewedCount($firebaseAuthService.$getAuth().uid, this.reviewedSessions);
     }
 
-    
+    this.delete = function(userSession) {
+      var found = this.sessions.find(function(s) {
+        return s.userSessionKey === userSession.$id
+      });
+      this.sessions.$remove(found);
+      this.userSessions.$remove(userSession);
+    }
           
     this.voteYes = function() {
       this.reviewedSessions[this.currentSessionToReview.$id] = 'yes';

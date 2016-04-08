@@ -17,6 +17,7 @@
     <ul class="list-group">
       <li class="list-group-item" ng-repeat="session in $ctrl.userSessions">
         {{session.title}}
+        <span class="glyphicon glyphicon-remove pointable" ng-click="$ctrl.delete(session)"></span>
       </li>
     </ul>
   </div>
