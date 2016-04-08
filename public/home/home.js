@@ -13,6 +13,11 @@ angular.module('app').component('home', {
     }
     this.setNextSessionToReview();
     
+    this.getUnreviewedSessionsCount = function() {
+      return this.sessions.getUnreviewedCount($firebaseAuthService.$getAuth().uid, this.reviewedSessions);
+    }
+
+    
           
     this.voteYes = function() {
       this.reviewedSessions[this.currentSessionToReview.$id] = 'yes';

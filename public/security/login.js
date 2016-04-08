@@ -3,7 +3,8 @@ angular.module('app').component('login', {
   bindings: {
     currentAuth: '='
   },
-  controller: function($firebaseAuthService, $firebaseRef, $location, $firebaseObject) {
+  controller: function($firebaseAuthService, $firebaseRef, $location, 
+      $firebaseObject, toastr) {
     this.loggedIn = !!this.currentAuth;
     if(this.loggedIn) {
       $location.path('/home');
@@ -16,7 +17,7 @@ angular.module('app').component('login', {
       }).then((function(userdata) {
         $location.path('/home');
       }).bind(this)).catch((function(err) {
-        this.errorMessage = err.code;
+        toastr.error(err);
       }).bind(this))
     }
   }

@@ -3,7 +3,7 @@ angular.module('app').component('adminLogin', {
   bindings: {
     currentAuth: '='
   },
-  controller: function($firebaseAuthService, $location, currentUser) {
+  controller: function($firebaseAuthService, $location, toastr) {
     this.loggedIn = !!this.currentAuth;
     if(this.loggedIn) {
       $location.path('/home');
@@ -16,7 +16,7 @@ angular.module('app').component('adminLogin', {
       }).then((function(data) {
         $location.path('/admin/home');
       }).bind(this)).catch((function(err) {
-        this.errorMessage = err.code;
+        toastr.error(err);
       }).bind(this))
     }
   }

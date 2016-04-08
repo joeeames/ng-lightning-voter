@@ -1,0 +1,9 @@
+{
+  "firebase": "ng-lightning-voter",
+  "public": "public",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
