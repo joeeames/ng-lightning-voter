@@ -11,11 +11,11 @@ angular.module('app').factory('sessionCollection', function($firebaseArray) {
       return total;
     },
     getNextUnreviewedSession: function(userKey, reviewedSessions) {
-      var found = this.$list.find(function(session) {
+      var unreviewedSessions = this.$list.filter(function(session) {
         return userKey !== session.userKey
           && typeof reviewedSessions[session.$id] === 'undefined'
       });
-      return found;
+      return unreviewedSessions[Math.floor(Math.random() * unreviewedSessions.length)];
     }
   });
   
