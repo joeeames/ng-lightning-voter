@@ -3,7 +3,9 @@
   <h1>Home</h1>
 </div>
 
-<h2 style="margin-top:50px">Unreviewed Sessions <span class="badge">{{$ctrl.getUnreviewedSessionsCount()}}</span></h2>
+<h2 style="margin-top:50px">Unreviewed Sessions 
+  <small>{{$ctrl.getUnreviewedSessionsCount()}} left</small>
+</h2>
 <unreviewed-talk session="$ctrl.currentSessionToReview" vote-no="$ctrl.voteNo()" vote-yes="$ctrl.voteYes()"></unreviewed-talk>
 
 

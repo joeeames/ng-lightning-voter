@@ -44,14 +44,6 @@ app.config(function($routeProvider) {
         reviewedSessions: routeResolvers.reviewedSessions
       }
     })
-    .when('/admin/schedule', {
-      template: '<admin-schedule sessions="$resolve.sessions" reviewed-sessions="$resolve.reviewedSessions"></admin-schedule>',
-      resolve: {
-        admin: routeResolvers.requireAdmin,
-        sessions: routeResolvers.sessionsByVote,
-        reviewedSessions: routeResolvers.reviewedSessions
-      }
-    })
     .when('/home', {
       template: '<home reviewed-sessions="$resolve.reviewedSessions" sessions="$resolve.sessions" user-sessions="$resolve.userSessions"></home>',
       resolve: {
