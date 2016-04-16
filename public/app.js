@@ -1,7 +1,6 @@
 var app = angular.module('app', ['ngRoute', 'firebase', 'ngAnimate', 'toastr']);
 
-app.run(function($rootScope, $location, $firebaseAuthService, 
-    $firebaseObject, $firebaseRef) {
+app.run(['$rootScope','$location',function($rootScope, $location) {
   
   $rootScope.$on("$routeChangeError", function(e, next, prev, err) {
     if(err === "AUTH_REQUIRED") {
@@ -11,4 +10,4 @@ app.run(function($rootScope, $location, $firebaseAuthService,
       $location.path("/home");
     }
   })
-})
+}]);

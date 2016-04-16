@@ -4,12 +4,13 @@ angular.module('app').component('nav', {
     sessions: '=',
     reviewedSessions: '='
   },
-  controller: function($firebaseAuthService, $firebaseObject, fbRef) {
-    
-    this.currentUser = $firebaseObject(fbRef.getUserRef());
-    
-    this.getUnreviewedSessionsCount = function() {
-      return this.sessions.getUnreviewedCount($firebaseAuthService.$getAuth().uid, this.reviewedSessions);
-    }
-  }
-})
+  controller: ['$firebaseAuthService', '$firebaseObject', 'fbRef',
+    function ($firebaseAuthService, $firebaseObject, fbRef) {
+
+      this.currentUser = $firebaseObject(fbRef.getUserRef());
+
+      this.getUnreviewedSessionsCount = function () {
+        return this.sessions.getUnreviewedCount($firebaseAuthService.$getAuth().uid, this.reviewedSessions);
+      }
+    }]
+});

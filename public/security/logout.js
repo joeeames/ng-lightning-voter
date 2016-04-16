@@ -1,6 +1,6 @@
 angular.module('app').component('logout', {
-  controller: function($firebaseAuthService, $location) {
+  controller: ['$firebaseAuthService', '$location', function ($firebaseAuthService, $location) {
     $firebaseAuthService.$unauth();
     $location.path('/login');
-  }
-})
+  }]
+});
