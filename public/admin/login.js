@@ -3,21 +3,21 @@ angular.module('app').component('adminLogin', {
   bindings: {
     currentAuth: '='
   },
-  controller: function($firebaseAuthService, $location, toastr) {
+  controller: ['$firebaseAuthService', '$location', 'toastr', function ($firebaseAuthService, $location, toastr) {
     this.loggedIn = !!this.currentAuth;
-    if(this.loggedIn) {
+    if (this.loggedIn) {
       $location.path('/home');
     }
-    
-    this.login = function() {
+
+    this.login = function () {
       $firebaseAuthService.$authWithPassword({
         email: this.email,
         password: this.password
-      }).then((function(data) {
+      }).then((function (data) {
         $location.path('/admin/home');
-      }).bind(this)).catch((function(err) {
+      }).bind(this)).catch((function (err) {
         toastr.error(err);
       }).bind(this))
     }
-  }
-})
+  }]
+});

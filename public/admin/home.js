@@ -4,7 +4,7 @@ angular.module('app').component('adminHome', {
     sessions: '=',
     reviewedSessions: '='
   },
-  controller: function() {
+  controller: function () {
     this.sessionsByVoteDesc = this.sessions.reverse();
   }
-})
+});
